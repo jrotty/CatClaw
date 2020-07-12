@@ -22,7 +22,6 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
     public static function activate()
     {
         Helper::addRoute("route_catclaw","/catclaw","CatClaw_Action",'action');
-	  Typecho_Plugin::factory('Widget_Contents_Post_Edit')->finishSave= array('CatClaw_Plugin', 'savereturn');
     }
     
     /**
@@ -134,17 +133,5 @@ $form->addInput($set5);
      */
     public static function personalConfig(Typecho_Widget_Helper_Form $form){}
     
-    /**
-     * 插件实现方法
-     * 
-     * @access public
-     * @return void
-     */
-    public static function savereturn($con,$obj)
-    {
-return;
-    }
-
-
    
 }
