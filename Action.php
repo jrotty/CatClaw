@@ -364,10 +364,10 @@ echo '插件配置中的用户名或密码错误！';exit;
             }
             $uid=$this->user->uid;
 
-$title=str_replace("&amp;","&",$title);    
+$titlex=str_replace("&","&amp;",$title);    
 	
      $db = Typecho_Db::get();
-     if($db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$title))){
+     if($db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$titlex))){
 $cid=$db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$title))['cid'];
 
 
