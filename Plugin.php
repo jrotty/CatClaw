@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author jrotty
- * @version 1.6.0
+ * @version 1.6.1
  * @link https://zezeshe.com/archives/typecho-CatClaw.html
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -113,7 +113,7 @@ $form->addInput($set6);
 $set5 = new Typecho_Widget_Helper_Form_Element_Textarea('anime', NULL,$a, _t('动漫分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类
 <section id="custom-field" class="typecho-post-option">
 <label id="custom-field-expand" class="typecho-label">采集插件说明</label>
-   <br>插件采集会默认跳过同名已存在的文章，会自动更新同名连载状态的文章！文章标签如果采集站接口未提供则默认为【待定】<br>
+   <br>插件采集会默认跳过同名已存在的文章，会自动更新同名连载状态的文章！文章标签因为采集站接口未提供所以不会写入标签项<br>
    <br>1.采集站必须使用m3u8接口<br>2.以下是操作地址：<br>
     先手动添加：<br>
     Url:http://你的地址/catclaw/?pg=1&type=add&day=1&id=1&pass=你的密码 (GET)【如果你站没有开起伪静态。需要在‘catclaw’前加‘index.php/’】<br>
