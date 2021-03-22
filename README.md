@@ -16,9 +16,9 @@ CatClaw，是一款纯免费的typecho影视采集插件，适用于typecho影�
 
 视频演示地址：https://www.bilibili.com/video/BV1QK411n7qX?p=4
 
-影视一号模板：https://qqdie.com/archives/typecho-video-template.html
+影视一号模板：https://zezeshe.com/archives/typecho-video-template.html
 
-影视二号模板：https://qqdie.com/archives/typecho-film-theme.html
+影视二号模板：https://zezeshe.com/archives/typecho-film-theme.html
 
 
 
