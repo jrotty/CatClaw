@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author jrotty
- * @version 1.6.5
+ * @version 1.6.6
  * @link https://zezeshe.com/archives/typecho-CatClaw.html
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -46,6 +46,9 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
      */
     public static function config(Typecho_Widget_Helper_Form $form)
     {
+       if(Helper::options()->rewrite==0){$index=Helper::options()->rootUrl.'/index.php/';}else{$index=Helper::options()->rootUrl.'/';}
+        
+        
         $set1 = new Typecho_Widget_Helper_Form_Element_Text('url', NULL, NULL, _t('采集站接口URL'), _t('一般采集站会提供m3u8的接口，比如123ku资源网(http://123ku.com/)就是：http://cj.123ku2.com:12315/inc/sea123kum3u8.php'));
         $form->addInput($set1);
         
@@ -53,7 +56,7 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
         $form->addInput($set6);
         
   
-        $lianzai = new Typecho_Widget_Helper_Form_Element_Radio('tiao',array('1' => _t('跳过'),'2' => _t('不跳过')),'1',_t('采集时跳过完结番剧'), _t('采集时遇到同名文章，默认会自动更新连载状态的视频列表，选择不跳过则不管视频状态是什么都将进行更新'));
+        $lianzai = new Typecho_Widget_Helper_Form_Element_Radio('tiao',array('1' => _t('跳过'),'2' => _t('不跳过')),'1',_t('采集时跳过完结番剧'), _t('采集时遇到同名文章，默认会只更新连载状态的视频列表，选择不跳过则不管视频状态是什么都将进行更新操作'));
         $form->addInput($lianzai);  
   
         
@@ -120,7 +123,7 @@ $set5 = new Typecho_Widget_Helper_Form_Element_Textarea('anime', NULL,$a, _t('�
    <br>插件采集会默认跳过同名已存在的文章，会自动更新同名连载状态的文章！文章标签因为采集站接口未提供所以不会写入标签项<br>
    <br>1.采集站必须使用m3u8接口<br>2.以下是操作地址：<br>
     先手动添加：<br>
-    Url:http://你的地址/catclaw/?pg=1&type=add&day=1&id=1&pass=你的密码 (GET)【如果你站没有开起伪静态。需要在‘catclaw’前加‘index.php/’】<br>
+    <span style="color: red;font-size: 16px;">'.$index.'catclaw/?pg=1&type=add&day=1&id=1&pass=你的密码 (GET)</span><br>
     参数：<br>
     pg = 页数<br>
     type = 操作类型（add和cron，add是手动采集，cron是用于服务器定时任务的）<br>
@@ -130,7 +133,7 @@ $set5 = new Typecho_Widget_Helper_Form_Element_Textarea('anime', NULL,$a, _t('�
     <br>
     下面是监控地址：
     <br>
-    http://你的地址/catclaw/?pg=1&type=cron&day=1&id=1&pass=你的密码 (GET)【如果你站没有开起伪静态。需要在‘catclaw’前加‘index.php/’】
+    <span style="color: red;font-size: 16px;">'.$index.'catclaw/?pg=1&type=cron&day=1&id=1&pass=你的密码 (GET)</span>
     <br>监控地址一般填于服务器定时任务，day参数不要填max以免卡死！
     <p></p>
     </section>'));
