@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author jrotty
- * @version 1.6.1
+ * @version 1.6.2
  * @link https://zezeshe.com/archives/typecho-CatClaw.html
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -46,10 +46,10 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
      */
     public static function config(Typecho_Widget_Helper_Form $form)
     {
-        $set1 = new Typecho_Widget_Helper_Form_Element_Text('url', NULL, NULL, _t('采集站接口URL'), _t('一般采集站会提供m3u8的接口，比如ok资源网就是：https://cj.okzy.tv/inc/apickm3u8s_subname.php'));
+        $set1 = new Typecho_Widget_Helper_Form_Element_Text('url', NULL, NULL, _t('采集站接口URL'), _t('一般采集站会提供m3u8的接口，比如123ku资源网(http://123ku.com/)就是：http://cj.123ku2.com:12315/inc/sea123kum3u8.php'));
         $form->addInput($set1);
         
-        $set6 = new Typecho_Widget_Helper_Form_Element_Text('autoup', NULL, NULL, _t('自动更新参数'), _t('autoup插件的自动更新参数，比如ok资源网就是okzyw，具体见autoup插件设置说明，此项为选填，不填则默认不设置自动更新参数'));
+        $set6 = new Typecho_Widget_Helper_Form_Element_Text('autoup', NULL, NULL, _t('自动更新参数'), _t('autoup插件的自动更新参数，比如123ku资源网(http://123ku.com/)就是123ku，具体见autoup插件设置说明，此项为选填，不填则默认不设置自动更新参数'));
         $form->addInput($set6);
         
         
