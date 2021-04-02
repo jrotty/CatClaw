@@ -123,7 +123,7 @@ $set5 = new Typecho_Widget_Helper_Form_Element_Textarea('anime', NULL,$a, _t('�
    <br>插件采集会默认跳过同名已存在的文章，会自动更新同名连载状态的文章！文章标签因为采集站接口未提供所以不会写入标签项<br>
    <br>1.采集站必须使用m3u8接口<br>2.以下是操作地址：<br>
     先手动添加：<br>
-    <span style="color: red;font-size: 16px;">'.$index.'catclaw/?pg=1&type=add&day=1&id=1&pass=你的密码 (GET)</span><br>
+    <span style="color: red;font-size: 16px;">'.$index.'catclaw/?pg=1&type=add&day=1&id=资源站分类id&pass=你的密码 (GET)</span><br>
     参数：<br>
     pg = 页数<br>
     type = 操作类型（add和cron，add是手动采集，cron是用于服务器定时任务的）<br>
@@ -133,7 +133,7 @@ $set5 = new Typecho_Widget_Helper_Form_Element_Textarea('anime', NULL,$a, _t('�
     <br>
     下面是监控地址：
     <br>
-    <span style="color: red;font-size: 16px;">'.$index.'catclaw/?pg=1&type=cron&day=1&id=1&pass=你的密码 (GET)</span>
+    <span style="color: red;font-size: 16px;">'.$index.'catclaw/?pg=1&type=cron&day=1&id=资源站分类id&pass=你的密码 (GET)</span>
     <br>监控地址一般填于服务器定时任务，day参数不要填max以免卡死！
     <p></p>
     </section>'));
