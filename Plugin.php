@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author jrotty
- * @version 1.6.2
+ * @version 1.6.5
  * @link https://zezeshe.com/archives/typecho-CatClaw.html
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -52,6 +52,10 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
         $set6 = new Typecho_Widget_Helper_Form_Element_Text('autoup', NULL, NULL, _t('自动更新参数'), _t('autoup插件的自动更新参数，比如123ku资源网(http://123ku.com/)就是123ku，具体见autoup插件设置说明，此项为选填，不填则默认不设置自动更新参数'));
         $form->addInput($set6);
         
+  
+        $lianzai = new Typecho_Widget_Helper_Form_Element_Radio('tiao',array('1' => _t('跳过'),'2' => _t('不跳过')),'1',_t('采集时跳过完结番剧'),_t("默认采集时跳过完结状态的番剧"));
+        $form->addInput($lianzai);  
+  
         
         $set2 = new Typecho_Widget_Helper_Form_Element_Text('pass', NULL, NULL, _t('访问密码'), _t('访问密码'));
         $form->addInput($set2);

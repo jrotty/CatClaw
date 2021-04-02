@@ -384,7 +384,7 @@ if($db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$tit
 $cid=$db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$titlex))['cid'];
 
 
-if($db->fetchRow($db->select()->from ('table.fields')->where ('cid = ?',$cid)->where ('name = ?','zhuangtai'))['str_value']!=0){
+if($db->fetchRow($db->select()->from ('table.fields')->where ('cid = ?',$cid)->where ('name = ?','zhuangtai'))['str_value']!=0||Helper::options()->Plugin('CatClaw')->tiao==2){
 
 $zhuangtai=$fv[1];
 $list=$fv[3];
