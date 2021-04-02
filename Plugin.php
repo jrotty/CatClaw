@@ -53,7 +53,7 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
         $form->addInput($set6);
         
   
-        $lianzai = new Typecho_Widget_Helper_Form_Element_Radio('tiao',array('1' => _t('跳过'),'2' => _t('不跳过')),'1',_t('采集时跳过完结番剧'),_t("默认采集时跳过完结状态的番剧"));
+        $lianzai = new Typecho_Widget_Helper_Form_Element_Radio('tiao',array('1' => _t('跳过'),'2' => _t('不跳过')),'1',_t('采集时跳过完结番剧'), _t('采集时遇到同名文章，默认会自动更新连载状态的视频列表，选择不跳过则不管视频状态是什么都将进行更新'));
         $form->addInput($lianzai);  
   
         
