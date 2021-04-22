@@ -257,8 +257,8 @@ elseif(strpos($area,'日本') !== false||strpos($type,'日剧') !== false||strpo
 $cate=$t['日剧'];
 }
 else {
- $area=$area.'剧';
-if(empty($t[$area])){$cate=$t['其他剧'];}else{$cate=$t[$area];}
+$t=$this->shuzu(Helper::options()->Plugin('CatClaw')->tv);  
+$cate=$t[$type];
  }
 }
 elseif(strpos($type,'综艺') !== false){
