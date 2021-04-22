@@ -106,13 +106,13 @@ $z='内地综艺：
 欧美综艺：';
 
 
-$set3 = new Typecho_Widget_Helper_Form_Element_Textarea('film', NULL,$f, _t('电影分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站电影分类名字与上边设置的不相符，可以回车手动添加比如：艾薇片：分类mi'));
+$set3 = new Typecho_Widget_Helper_Form_Element_Textarea('film', NULL,$f, _t('电影分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站电影分类名字与上边设置的不相符，可以回车手动添加比如：艾薇片：分类mid'));
 $form->addInput($set3);
 
-$set4 = new Typecho_Widget_Helper_Form_Element_Textarea('tv', NULL,$t, _t('电视剧分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站电视剧分类名字与上边设置的不相符，可以回车手动添加比如：日本剧：分类mi'));
+$set4 = new Typecho_Widget_Helper_Form_Element_Textarea('tv', NULL,$t, _t('电视剧分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站电视剧分类名字与上边设置的不相符，可以回车手动添加比如：日本剧：分类mid'));
 $form->addInput($set4);
 
-$set6 = new Typecho_Widget_Helper_Form_Element_Textarea('zy', NULL,$z, _t('综艺分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站综艺分类名字与上边设置的不相符，可以回车手动添加比如：大陆综艺：分类min'));
+$set6 = new Typecho_Widget_Helper_Form_Element_Textarea('zy', NULL,$z, _t('综艺分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站综艺分类名字与上边设置的不相符，可以回车手动添加比如：大陆综艺：分类mind'));
 $form->addInput($set6);
 
 
