@@ -112,12 +112,12 @@ $form->addInput($set3);
 $set4 = new Typecho_Widget_Helper_Form_Element_Textarea('tv', NULL,$t, _t('电视剧分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站电视剧分类名字与上边设置的不相符，可以回车手动添加比如：日本剧：分类mid'));
 $form->addInput($set4);
 
-$set6 = new Typecho_Widget_Helper_Form_Element_Textarea('zy', NULL,$z, _t('综艺分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站综艺分类名字与上边设置的不相符，可以回车手动添加比如：大陆综艺：分类mind'));
+$set6 = new Typecho_Widget_Helper_Form_Element_Textarea('zy', NULL,$z, _t('综艺分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站综艺分类名字与上边设置的不相符，可以回车手动添加比如：大陆综艺：分类mid'));
 $form->addInput($set6);
 
 
 
-$set5 = new Typecho_Widget_Helper_Form_Element_Textarea('anime', NULL,$a, _t('动漫分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类
+$set5 = new Typecho_Widget_Helper_Form_Element_Textarea('anime', NULL,$a, _t('动漫分类绑定'), _t('请在冒号后面填写对应的分类mid，不填或者填0采集时则越过该分类，如果资源站动漫分类名字与上边设置的不相符，程序会自动处理，当自动处理也无法正确分类时可以回车手动添加比如：动画片：分类mid
 <section id="custom-field" class="typecho-post-option">
 <label id="custom-field-expand" class="typecho-label">采集插件说明</label>
    <br>插件采集会默认跳过同名已存在的文章，会自动更新同名连载状态的文章！文章标签因为采集站接口未提供所以不会写入标签项<br>
