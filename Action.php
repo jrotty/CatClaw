@@ -252,6 +252,9 @@ $cate=$t['欧美剧'];
 elseif(strpos($area,'中国') !== false||strpos($area,'大陆') !== false||strpos($area,'国产') !== false||strpos($area,'内地') !== false){
 $cate=$t['国产剧'];
 }
+elseif(strpos($area,'日本') !== false||strpos($type,'日剧') !== false||strpos($type,'日本剧') !== false||strpos($type,'日本') !== false){
+$cate=$t['日剧'];
+}
 else {
  $area=$area.'剧';
 if(empty($t[$area])){$cate=$t['其他剧'];}else{$cate=$t[$area];}
