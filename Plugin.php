@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author jrotty
- * @version 1.6.7
+ * @version 1.6.9
  * @link https://zezeshe.com/archives/typecho-CatClaw.html
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -97,8 +97,7 @@ $a='中国动漫：
 港台动漫：
 日本动漫：
 韩国动漫：
-欧美动漫：
-其他动漫：';
+欧美动漫：';
 
 $z='内地综艺：
 港台综艺：
