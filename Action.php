@@ -237,7 +237,8 @@ elseif(strpos($area,'韩国') !== false){
 $cate=$d['韩国动漫'];
 }
 else{
-$cate=$d['其他动漫'];
+$d=$this->shuzu(Helper::options()->Plugin('CatClaw')->anime);  
+$cate=$d[$type];
 }
 }
 
