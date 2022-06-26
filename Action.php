@@ -407,17 +407,12 @@ echo '跳过重复项《'.$title.'》<br>';
 }
 return 'ok';
      }else{
-     
-        $request = Typecho_Request::getInstance();
 
         //填充文章的相关字段信息。
-        $request->setParams(
+       $contents=
             array(
                 'title'=>$title,
                 'text'=>$text,
-                'fieldNames'=>$fn,
-                'fieldTypes'=>$ft,
-                'fieldValues'=>$fv,
                 'cid'=>'',
                 'do'=>'publish',
                 'markdown'=>'1',
@@ -430,20 +425,14 @@ return 'ok';
                 'allowPing'=>'1',
                 'allowFeed'=>'1',
                 'trackback'=>'',
-            )
-        );
+            );
 
-        //设置token，绕过安全限制
-        $security = $this->widget('Widget_Security');
-        $request->setParam('_', $security->getToken($this->request->getReferer()));
+        $field['fieldNames']=$fn;
+        $field['fieldTypes']=$ft;
+        $field['fieldValues']=$fv;
+        $this->request->markdown=$contents['markdown'];
         //设置时区，否则文章的发布时间会查8H
         date_default_timezone_set('PRC');
-        
-        $contents = $this->request->from('password', 'allowComment',
-            'allowPing', 'allowFeed', 'slug', 'tags', 'text', 'visibility','created');
-
-        $contents['category'] = $this->request->getArray('category');
-        $contents['title'] = $this->request->get('title', _t('未命名文档'));
         $contents['type'] = 'post';
         $content['authorId']=$user;
         
@@ -472,7 +461,7 @@ return 'ok';
            $this->widget($widgetName)->attach($this->cid);
             
             /** 保存自定义字段 */
-            $this->applyFields($this->getFields(), $realId);
+            $this->applyFields($this->getFields($field), $realId);
         }     
    }    
           
@@ -483,7 +472,7 @@ return 'ok';
         
     }
     
-    private function  getFields()
+    private function getFields($field)
     {
         $fields = array();
         $fieldNames = $this->request->getArray('fieldNames');
