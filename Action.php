@@ -472,16 +472,16 @@ return 'ok';
         
     }
     
-    private function getFields($field)
+    private function  getFields($field)
     {
         $fields = array();
-        $fieldNames = $this->request->getArray('fieldNames');
+        $fieldNames = $field['fieldNames'];
 
         if (!empty($fieldNames)) {
             $data = array(
-                'fieldNames'    =>  $this->request->getArray('fieldNames'),
-                'fieldTypes'    =>  $this->request->getArray('fieldTypes'),
-                'fieldValues'   =>  $this->request->getArray('fieldValues')
+                'fieldNames'    =>  $field['fieldNames'],
+                'fieldTypes'    =>  $field['fieldTypes'],
+                'fieldValues'   =>  $field['fieldValues']
             );
             foreach ($data['fieldNames'] as $key => $val) {
                 if (empty($val)) {
