@@ -62,9 +62,13 @@ for($i=0;$i<count($list['list']);$i++){
    $ids=$list['list'][$i]['vod_id'];
    $detail=json_decode($this->MCurl($detailurl.'&ids='.$ids), true);
  
-$m3u8=explode('$$$',$detail['list'][0]['vod_play_url'])[1];
- 
-$m3u8=str_ireplace("#", "\n", $m3u8);
+$m3u8=explode('$$$',$detail['list'][0]['vod_play_url']);
+if(strpos($m3u8[0],'.m3u8') != false){
+$m3u8=$m3u8[0];
+}else{
+$m3u8=$m3u8[1];
+}
+$m3u8=str_ireplace("#", "\r\n", $m3u8);
  
 $user=$setting->username;
 $password=$setting->password;
