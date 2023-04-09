@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author 泽泽社长
- * @version 1.8.1
+ * @version 1.8.2
  * @link https://blog.zezeshe.com/
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -56,13 +56,6 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
         
         $set2 = new Typecho_Widget_Helper_Form_Element_Text('autoup', NULL, NULL, _t('自动更新参数'), _t('autoup插件的自动更新参数，具体见autoup插件设置说明，此项为选填，不填则默认不设置自动更新参数'));
         $form->addInput($set2);
-        
-
-        $set3 = new Typecho_Widget_Helper_Form_Element_Text('aid', NULL, NULL, _t('资源站分类id'), _t('填写你想的采集的视频资源站的分类id'));
-        $form->addInput($set3);
-        
-        $set4 = new Typecho_Widget_Helper_Form_Element_Text('bid', NULL, NULL, _t('本站分类mid'), _t('从资源站采集后写入本站的分类'));
-        $form->addInput($set4);
 
 
         $lianzai = new Typecho_Widget_Helper_Form_Element_Radio('tiao',array('1' => _t('跳过'),'2' => _t('不跳过')),'1',_t('采集时跳过完结番剧'), _t('采集时遇到同名文章，默认会只更新连载状态的视频列表，选择不跳过则不管视频状态是什么都将进行更新操作'));
@@ -79,10 +72,12 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
    <br>插件采集会默认跳过同名已存在的文章，会自动更新同名连载状态的文章！文章标签因为采集站接口未提供所以不会写入标签项<br>
    <br>1.采集站必须使用m3u8接口<br>2.以下是操作地址：<br>
     先手动添加：<br>
-    <span style="color: red;font-size: 16px;">'.$index.'catclaw/?pg=1&day=1&pass=你的密码 (GET)</span><br>
+    <span style="color: red;font-size: 16px;">'.$index.'catclaw/?pg=1&day=1&zid=&mid=&pass=你的密码 (GET)</span><br>
     参数：<br>
     pg = 页数,至从第几页开始采集，一般填1就行<br>
     day = 采集天数，可输入1,7,max（输入1就是采集最近24小时内更新的资源，7就是一周，max就是采集全部）<br>
+    zid = 资源站分类id<br>
+    mid = 网站mid<br>
     pass = 插件后台设置的密码<br>
     </section>'));
         $form->addInput($set7);
