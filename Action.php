@@ -78,7 +78,6 @@ $user=$setting->username;
 $password=$setting->password;
 $title=$detail['list'][0]['vod_name'];
 $text=$detail['list'][0]['vod_blurb'];
-$cate=$mid;
 $tags=$detail['list'][0]['vod_class'];
 
 $fn[0]='niandai';
@@ -112,7 +111,7 @@ $fv[5]=Helper::options()->Plugin('CatClaw')->autoup.'$'.$zid;
 }
 
 
-$this->post_article($user,$password,$title,$text,$fn,$ft,$fv,$cate,$tags);
+$this->post_article($user,$password,$title,$text,$fn,$ft,$fv,$mid,$tags);
 }
 $zpg= $list['pagecount'];
         if ($pg < $zpg) {
@@ -141,7 +140,7 @@ if($db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$tit
 $cid=$db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$titlex))['cid'];
 
 
-if($db->fetchRow($db->select()->from ('table.fields')->where ('cid = ?',$cid)->where ('name = ?','zhuangtai'))['str_value']!=0||Helper::options()->Plugin('CatClaw')->tiao==2){
+if(@$db->fetchRow($db->select()->from ('table.fields')->where ('cid = ?',$cid)->where ('name = ?','zhuangtai'))['str_value']!=0||Helper::options()->Plugin('CatClaw')->tiao==2){
 
 $zhuangtai=$fv[1];
 $list=$fv[3];
@@ -161,6 +160,7 @@ echo '跳过重复项《'.$title.'》<br>';
 return 'ok';
      }else{
 
+$cate=explode(",",$cate);
         //填充文章的相关字段信息。
        $contents=
             array(
@@ -199,12 +199,15 @@ return 'ok';
    if ($reflectionWidget->implementsInterface('Widget_Interface_Do')) {
        
   if ($realId > 0) {
+
             /** 插入分类 */
             if (array_key_exists('category', $contents)) {
-                $this->widget($widgetName)->setCategories($realId, !empty($contents['category']) && is_array($contents['category']) ?
-                $contents['category'] : array($this->options->defaultCategory), false, true);
+                $this->widget($widgetName)->setCategories(
+                    $realId,
+                    !empty($contents['category']) && is_array($contents['category'])
+                        ? $contents['category'] : [$this->options->defaultCategory], false, true
+                );
             }
-
             /** 插入标签 */
             if (array_key_exists('tags', $contents)) {
                 $this->widget($widgetName)->setTags($realId, $contents['tags'], false, true);
