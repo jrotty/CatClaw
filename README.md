@@ -5,8 +5,6 @@ CatClaw，是一款纯免费的typecho影视采集插件，适用于typecho影�
 
 - 采集视频资源默认同名自动略过，同名连载状态自动更新内容 
 
-- 支持多分类绑定 支持设置发布文章的用户 
-
 - 支持免登录采集【指无需登陆，实际是代码中做了临时登陆】
 
 - 支持适配autoup插件 
@@ -16,8 +14,6 @@ CatClaw，是一款纯免费的typecho影视采集插件，适用于typecho影�
 影视一号模板：已下线，可以在百度上搜typecho影视一号
 
 影视二号模板：https://blog.zezeshe.com/archives/typecho-film-theme.html
-
-
 
 **PS：** 插件代码中含有typecho发布文章的接口代码，如果你是开发者，如果想做采集插件的话，可以参考里面的代码哦！
 
