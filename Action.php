@@ -117,7 +117,7 @@ $this->post_article($user,$password,$title,$text,$fn,$ft,$fv,$cate,$tags);
 $zpg= $list['pagecount'];
         if ($pg < $zpg) {
             $pg = $pg + 1;
-            $urll ='?pg='.$pg.'&day='.$day.'&pass='.$pass;
+            $urll ='?pg='.$pg.'&day='.$day.'&zid='.$zid.'&mid='.$mid.'&pass='.$pass;
            echo '</div><p class="description"><meta http-equiv="refresh" content="3;URL='.$urll.'"><a href="'.$urll.'">3秒后跳转下一页~</a> 剩余：' . ($pg - 1) . '/' . $zpg . '页</p>';
         }else{
     echo '</div><p class="description">该类别下的内容已全部采集完毕！</p>';
