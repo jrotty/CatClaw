@@ -19,13 +19,18 @@ class CatClaw_Action extends Widget_Abstract_Contents implements Widget_Interfac
 @($pg = $_GET['pg']);
 @($day = $_GET['day']);
 @($pass = $_GET['pass']);
+@($zid=$_GET['zid']);
+@($mid=$_GET['mid']);
+
 $setting=Helper::options()->Plugin('CatClaw');
 
-if(!$_GET['pg']||!$_GET['day']||!$_GET['pass']){
+if(!$_GET['pg']||!$_GET['day']||!$_GET['pass']||!$_GET['zid']||!$_GET['mid']){
     echo '存在参数未填写,您需要确保网址上带有pg，day，pass<br>
     参数：<br>
     pg = 页数<br>
     day = 采集天数，可输入1,7,max（输入1就是采集最近24小时内更新的资源，7就是一周，max就是采集全部）<br>
+    zid = 资源站分类id<br>
+    mid = 网站mid<br>
     pass = 插件后台设置的密码<br>';
     exit;
 }
@@ -49,9 +54,8 @@ echo '<div style="
 ">';
 
 $detailurl=$setting->detailurl;
-$aid=$setting->aid;
-$bid=$setting->bid;
-$listurl=$setting->listurl.'&h='.$h.'&t='.$aid.'&pg='.$pg;
+
+$listurl=$setting->listurl.'&h='.$h.'&t='.$zid.'&pg='.$pg;
 
 $list=json_decode($this->MCurl($listurl), true);
 //echo '<pre>';
@@ -74,7 +78,7 @@ $user=$setting->username;
 $password=$setting->password;
 $title=$detail['list'][0]['vod_name'];
 $text=$detail['list'][0]['vod_blurb'];
-$cate=$bid;
+$cate=$mid;
 $tags=$detail['list'][0]['vod_class'];
 
 $fn[0]='niandai';
@@ -104,7 +108,7 @@ $fv[4]=$detail['list'][0]['vod_sub'];
 if(Helper::options()->Plugin('CatClaw')->autoup){
 $fn[5]='autoup';
 $ft[5]='str';
-$fv[5]=Helper::options()->Plugin('CatClaw')->autoup.'$'.$aid;
+$fv[5]=Helper::options()->Plugin('CatClaw')->autoup.'$'.$zid;
 }
 
 
