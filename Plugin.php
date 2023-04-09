@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author 泽泽社长
- * @version 1.8.2
+ * @version 1.8.3
  * @link https://blog.zezeshe.com/
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
