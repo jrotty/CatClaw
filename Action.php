@@ -21,6 +21,10 @@ class CatClaw_Action extends Widget_Abstract_Contents implements Widget_Interfac
 @($pass = $_GET['pass']);
 @($zid=$_GET['zid']);
 @($mid=$_GET['mid']);
+$type='add';
+if(!empty($_GET['type'])){
+$type=$_GET['type'];
+}
 
 $setting=Helper::options()->Plugin('CatClaw');
 
@@ -44,6 +48,27 @@ elseif($pass!=$setting->pass||empty($pass)){
         $h = '168';} elseif ($day == "max") {
         $h='';}
 
+$listurl=$setting->listurl.'&h='.$h.'&t='.$zid.'&pg='.$pg;
+
+$list=json_decode($this->MCurl($listurl), true);
+if ($type == "cron") {//如果是定时任务
+$zpg= $list['pagecount'];//获取总页码
+for ($i = 1; $i <= $zpg; $i++) {//循环请求写入每页数组
+        $listurl=$setting->listurl.'&h='.$h.'&t='.$zid.'&pg='.$i;
+        $list=json_decode($this->MCurl($listurl), true);
+    	$this->caiji($list,$i,$day,$zid,$mid,$pass,$type);
+}
+
+}
+else{//如果是普通采集
+$this->caiji($list,$pg,$day,$zid,$mid,$pass,$type);
+}
+    }
+    
+    
+private function caiji($list,$pg,$day,$zid,$mid,$pass,$type){
+$setting=Helper::options()->Plugin('CatClaw');
+$detailurl=$setting->detailurl;
 
 echo '<div style="
     max-height: 200px;
@@ -51,16 +76,7 @@ echo '<div style="
     background: #000;
     color:#fff;
     padding: 12px;
-">';
-
-$detailurl=$setting->detailurl;
-
-$listurl=$setting->listurl.'&h='.$h.'&t='.$zid.'&pg='.$pg;
-
-$list=json_decode($this->MCurl($listurl), true);
-//echo '<pre>';
-//print_r($list);
-//echo '</pre>';
+">'.$type.'<br>';
 for($i=0;$i<count($list['list']);$i++){
     
    $ids=$list['list'][$i]['vod_id'];
@@ -113,6 +129,8 @@ $fv[5]=Helper::options()->Plugin('CatClaw')->autoup.'$'.$zid;
 
 $this->post_article($user,$password,$title,$text,$fn,$ft,$fv,$mid,$tags);
 }
+
+if($type!=="cron"){
 $zpg= $list['pagecount'];
         if ($pg < $zpg) {
             $pg = $pg + 1;
@@ -121,8 +139,10 @@ $zpg= $list['pagecount'];
         }else{
     echo '</div><p class="description">该类别下的内容已全部采集完毕！</p>';
 }
+}
 
-    }
+}
+    
     
 private function post_article($user,$password,$title,$text,$fn,$ft,$fv,$cate,$tags)
     {
