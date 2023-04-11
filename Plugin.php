@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author 泽泽社长
- * @version 1.8.3
+ * @version 1.8.4
  * @link https://blog.zezeshe.com/
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -82,7 +82,49 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
     </section>'));
         $form->addInput($set7);
         
-
+        
+        $set8 = new Typecho_Widget_Helper_Form_Element_Textarea('button', NULL, NULL, _t('建立快捷按钮'), _t('格式：按钮名称$接口链接，采集天数参数用{day}代替'));
+        $form->addInput($set8);
+        
+        $setting=Helper::options()->Plugin('CatClaw');
+        if($setting->button){
+        $hang = array_filter(explode("\r\n", $setting->button));
+        echo '<style>
+        .catbutton {margin-bottom: 1rem;}
+        .catbutton a {
+    background: #2196F3;
+    color: #fff;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+        }
+        .catbutton a:hover {
+    background: #3F51B5;
+        }
+        </style>
+        ';
+        foreach($hang as $val){
+        $name=explode("$", $val)[0];
+        $url=explode("$", $val)[1];
+        $url1=str_replace('{day}', '1', $url);
+        $url2=str_replace('{day}', '7', $url);
+        $url3=str_replace('{day}', 'max', $url);
+        
+        echo '
+        <div class="catbutton">
+        <a href="'.$url1.'" target="_blank">'.$name.'(最近24小时)</a>
+        <a href="'.$url2.'" target="_blank">'.$name.'(最近一周)</a>
+        <a href="'.$url3.'" target="_blank">'.$name.'(采集全部)</a>
+        </div>
+        ';
+            
+        }
+            
+            
+        }
+        
+        
+        
     }
     
     /**
