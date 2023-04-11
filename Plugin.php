@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author 泽泽社长
- * @version 1.8.4
+ * @version 1.8.5
  * @link https://blog.zezeshe.com/
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -79,6 +79,7 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
     zid = 资源站分类id<br>
     mid = 网站mid<br>
     pass = 插件后台设置的密码<br>
+    type = 不填写则为手动采集模式，填写‘cron’则为定时任务模式，定时任务模式建议参数day填写1或者7
     </section>'));
         $form->addInput($set7);
         
@@ -90,13 +91,14 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
         if($setting->button){
         $hang = array_filter(explode("\r\n", $setting->button));
         echo '<style>
-        .catbutton {margin-bottom: 1rem;}
         .catbutton a {
     background: #2196F3;
     color: #fff;
     padding: 0.3rem 0.5rem;
     border-radius: 5px;
     text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1rem;
         }
         .catbutton a:hover {
     background: #3F51B5;
@@ -115,6 +117,7 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
         <a href="'.$url1.'" target="_blank">'.$name.'(最近24小时)</a>
         <a href="'.$url2.'" target="_blank">'.$name.'(最近一周)</a>
         <a href="'.$url3.'" target="_blank">'.$name.'(采集全部)</a>
+        <a href="'.$url1.'&type=cron" target="_blank">'.$name.'(最近24小时【用于定时任务】)</a>
         </div>
         ';
             
