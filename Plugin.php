@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 
  * @package CatClaw
  * @author 泽泽社长
- * @version 1.8.5
+ * @version 1.8.6
  * @link https://blog.zezeshe.com/
  */
 class CatClaw_Plugin implements Typecho_Plugin_Interface
@@ -86,10 +86,10 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
         
         $set8 = new Typecho_Widget_Helper_Form_Element_Textarea('button', NULL, NULL, _t('建立快捷按钮'), _t('格式：按钮名称$接口链接，采集天数参数用{day}代替'));
         $form->addInput($set8);
-        
-        $setting=Helper::options()->Plugin('CatClaw');
-        if($setting->button){
-        $hang = array_filter(explode("\r\n", $setting->button));
+
+        if(empty($_GET['activate'])&&!empty(Helper::options()->Plugin('CatClaw')->button)){
+        $setting=Helper::options()->Plugin('CatClaw')->button;
+        $hang = array_filter(explode("\r\n", $setting));
         echo '<style>
         .catbutton a {
     background: #2196F3;
@@ -121,10 +121,7 @@ class CatClaw_Plugin implements Typecho_Plugin_Interface
         </div>
         ';
             
-        }
-            
-            
-        }
+        }}
         
         
         
