@@ -70,6 +70,7 @@ private function caiji($list,$pg,$day,$zid,$mid,$pass,$type){
 $setting=Helper::options()->Plugin('CatClaw');
 $detailurl=$setting->detailurl;
 
+if($type!=="cron"){
 echo '<div style="
     max-height: 200px;
     overflow-y: auto;
@@ -77,6 +78,10 @@ echo '<div style="
     color:#fff;
     padding: 12px;
 ">'.$type.'<br>';
+}else{
+echo $type."\n";
+}
+
 for($i=0;$i<count($list['list']);$i++){
     
    $ids=$list['list'][$i]['vod_id'];
@@ -119,11 +124,14 @@ $fn[4]='name';
 $ft[4]='str';
 $fv[4]=$detail['list'][0]['vod_sub'];
 
+$fn[5]='douban';
+$ft[5]='str';
+$fv[5]=$detail['list'][0]['vod_douban_id'];
 
 if(Helper::options()->Plugin('CatClaw')->autoup){
-$fn[5]='autoup';
-$ft[5]='str';
-$fv[5]=Helper::options()->Plugin('CatClaw')->autoup.'$'.$zid;
+$fn[6]='autoup';
+$ft[6]='str';
+$fv[6]=Helper::options()->Plugin('CatClaw')->autoup.'$'.$zid;
 }
 
 
@@ -159,17 +167,20 @@ $db = Typecho_Db::get();
 if($db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$titlex))){
 $cid=$db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$titlex))['cid'];
 
-
 if(@$db->fetchRow($db->select()->from ('table.fields')->where ('cid = ?',$cid)->where ('name = ?','zhuangtai'))['str_value']!=0||Helper::options()->Plugin('CatClaw')->tiao==2){
 
-$zhuangtai=$fv[1];
-$list=$fv[3];
+
 $nowtime=time();
 $prefix = $db->getPrefix();
 $data_name=$prefix.'fields';//字段表
 $data_tname=$prefix.'contents';//文章表
-$db->query("UPDATE `{$data_name}` SET `str_value`='{$list}' WHERE `cid`='{$cid}' and name='mp4'");//更新列表
-$db->query("UPDATE `{$data_name}` SET `str_value`='{$zhuangtai}' WHERE `cid`='{$cid}' and name='zhuangtai'");//更新状态0完结1连载-1待定
+
+$field['fieldNames']=$fn;
+$field['fieldTypes']=$ft;
+$field['fieldValues']=$fv;
+ $this->applyFields($this->getFields($field), $cid);
+
+
 $db->query("UPDATE `{$data_tname}` SET `modified`='{$nowtime}' WHERE `cid`='{$cid}'");//更新时间
   
  
