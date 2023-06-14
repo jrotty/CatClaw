@@ -1,5 +1,5 @@
 # CatClaw
-CatClaw，是一款纯免费的typecho影视采集插件，适用于typecho影视1号,2号,3号模板。自1.8.0版本开始从xml接口转为采集json接口。
+CatClaw，是一款纯免费的typecho影视采集插件，适用于typecho影视1号,2号,3号，以及[Zevideo](https://github.com/jrotty/Zevideo)模板。自1.8.0版本开始从xml接口转为采集json接口。理论上支持typecho1.1.0版本及以上
 
 **功能介绍**
 
@@ -11,11 +11,8 @@ CatClaw，是一款纯免费的typecho影视采集插件，适用于typecho影�
 
 - 支持手动采集与定时任务两种模式
 
-影视一号模板：已下线，可以在百度上搜typecho影视一号
+## 插件安装注意事项
+插件文件夹名为`CatClaw`。
 
-影视二号模板：https://blog.zezeshe.com/archives/typecho-film-theme.html
-
-**PS：** 插件代码中含有typecho发布文章的接口代码，如果你是开发者，如果想做采集插件的话，可以参考里面的代码哦！
-
-# 插件升级方式
+## 插件升级方式
 禁用删除旧版插件，上传启用配置新版插件
