@@ -162,7 +162,8 @@ echo '插件配置中的用户名或密码错误！';exit;
             $uid=$this->user->uid;
 
 $titlex=str_replace("&","&amp;",$title); //解决&符号导致的番剧存在与否的判断bug
-	
+if(!empty($titlex)){
+    
 $db = Typecho_Db::get();
 if($db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$titlex))){
 $cid=$db->fetchRow($db->select()->from ('table.contents')->where ('title = ?',$titlex))['cid'];
@@ -256,7 +257,7 @@ $cate=explode(",",$cate);
             echo '《'.$title.'》发布成功<br>';
             return 'ok';
      }
-        
+}   
     }
     
     private function  getFields($field)
